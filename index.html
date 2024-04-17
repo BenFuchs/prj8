@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <button id="b1" style="position: absolute;">test</button> -->
+    <img src="https://picsum.photos/id/1/200/300" id="b1" style="position: absolute;">
+
+    <script>
+        var directionX = 'right'; 
+        var directionY = 'down';
+        var step = 10; 
+
+        function butMove(){
+            var b1 = document.getElementById('b1');
+            var currentLeft = parseInt(b1.style.left, 10) || 0; 
+            var currentTop = parseInt(b1.style.top, 10) || 0;
+            var windowWidth = window.innerWidth; 
+            var windowHeight = window.innerHeight;
+            if (directionX === 'right') {
+                var newLeft = currentLeft + step;
+                if (newLeft > windowWidth - 300) { 
+                    directionX = 'left'; 
+                }
+            } else {
+                var newLeft = currentLeft - step; 
+                if (newLeft < 0) { 
+                    directionX = 'right'; 
+                }
+            }
+            if (directionY === 'down') {
+                var newTop = currentTop + step;
+                if (newTop > windowHeight - 300) {
+                    directionY = 'up'
+                }
+            } else {
+                var newTop = currentTop - step;
+                if (newTop < 0) {
+                    directionY = 'down'
+                }
+            }
+
+            b1.style.top = newTop + 'px';
+            b1.style.left = newLeft + 'px'; 
+        }
+
+        setInterval(butMove, 100);
+    </script>
+</body>
+</html>
